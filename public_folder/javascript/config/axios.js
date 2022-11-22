@@ -1,7 +1,7 @@
 
 
 export const configurations = {
-    apiUrl: 'https://arthurcam.com' //'http://localhost:3777' //
+    apiUrl: '' //https://arthurcam.com //'http://localhost:3777' //
     , STRING_MAX_LENGTH: 18
     , STRING_IOT_MAX_LENGTH: 10
     , COMMENT_MAX_LENGTH: 255
