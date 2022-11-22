@@ -1,0 +1,36 @@
+body{ background-image: url('./images/ArthurCam-background.jpg'); background-repeat: no-repeat; background-size: 100% 100%; }
+p{ margin: 0px}
+h3{ font-size: 120%; }
+.pre_container{ opacity: 1; min-height: 100vh; background-color: rgba(209, 244, 249, 0.615); }
+.container{ min-height: 100vh; opacity: 1; background-color: rgba(68, 124, 130, 0.493); border-radius: 5px; }
+.sub_container{ min-height: 90vh; }
+
+
+img.logo_top_image{ height: 80px; width: auto; ;float: left; margin-left: 20px;  margin-right: 30px; margin-top: 6px; margin-bottom: 8px; border-radius: 5px; }
+img.logo_footer_image{margin-left: 50;height: 140px; border-radius: 15%; }
+.frame, footer > .footer, .header, .red, .green, .blue{ font-size: 100%; vertical-align: middle; margin-top: 4px; margin-bottom: 4px; padding-left: 20px; padding-right: 20px; background-color:  rgba(230, 240, 255, 0.226);  font-weight: 600; border-radius: 5px; }
+.title { margin-top: 15px; }
+.title h1, .title h2 { font-size: 125%; vertical-align: middle;}
+
+h3.frame { width: 100%; padding-top: 4px; padding-bottom: 4px; vertical-align: middle; }
+.frame input.btn{ margin: 4px;margin-top: 8px; background-color: rgba(16, 25, 128, 0.767); font-weight: bold; }
+.frame input.btn:hover{ color: rgba(241, 71, 71, 0.545); }
+.frame {margin-bottom: 4px; padding-top: 4px; padding-bottom: 4px;}
+.last_column_element { margin-bottom: 20px }
+
+.red { color:rgba(128, 8, 86, 0.711); }
+.green { color:rgba(2, 126, 0, 0.8);  }
+.blue { color: rgba(14, 14, 245, 0.712);}
+.red, .green, .blue{ border-width:1px; border-style:solid; background-color: rgba(217, 233, 218, 0.68);}
+
+/* input#emptyResult, input#emptyMessage{ margin-left: 5px; margin-right: 80px; }
+textarea#result, textarea#message{ font-weight: 600; width: 100%; }
+select#method{ max-width: 80px; margin-right: 4px; }
+input#submit{ margin-right: 40px; font-size: 107%;}
+select#sendWith{ max-width: 160px; }
+textarea#message{ min-height: 180px; }
+textarea#result, iframe#iframeTarget{ min-height: 240px;} */
+
+footer .footer{margin-top: 4px; padding-top: 8px !important; padding-bottom: 4px !important; font-weight: 500; }
+footer.pre_footer { margin: 2px; padding-bottom: 4px; }
+footer .footer > a{text-decoration: none;}

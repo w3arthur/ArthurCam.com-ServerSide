@@ -1,0 +1,40 @@
+{
+  "name": "arthur-cam-server",
+  "version": "1.0.0",
+  "description": "control my arduino from my web camera view",
+  "main": "server.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cam",
+    "camera",
+    "arduino",
+    "control",
+    "view",
+    "lamp",
+    "light",
+    "on",
+    "light",
+    "off",
+    "display"
+  ],
+  "author": "Arthur Zarankin",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "@arduino/arduino-iot-client": "^1.4.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^6.0.0",
+    "mongoose": "^6.6.5",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "ws": "^8.9.0"
+  }
+}

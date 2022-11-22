@@ -1,0 +1,1 @@
+export const videoSrc = 'https://arthurcam.com/tmp/hls/arthur.m3u8';

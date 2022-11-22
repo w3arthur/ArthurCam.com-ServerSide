@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Arthur's camera project with Arduino, live stream with online control for led display, text display on screen and table lamp display.">
+  <meta name="author" content="Arthur">
+  <meta property="og:url" content="https://arthurcam.com/">
+  <meta property="og:image" content="/images/ArthurCam-camera-control.jpg">
+  <meta http-equiv="Cache-control" content="no-cache"><meta http-equiv="Expires" content="-1"> <!-- https://stackoverflow.com/questions/5721704/window-location-reload-with-clear-cache -->
+  <title>Arthur Cam .com</title>
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./index.css" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- additional module scripts will set in the end of the page -->
+</head><body><div class="pre_container"><div class="container">
+
+
+<div class="sub_container">
+<header class="row header" style="margin: 2px"> <!--header-->
+  <section class="col">
+      <img alt="ArthurCam.com" src="./images/ArthurCam.jpg" class="logo_top_image">
+      <div class="title"> 
+          <h1>ArthurCam.com</h1> 
+          <h2>camera stream and control</h2>
+      </div>
+  </section>
+</header> <!--end header-->
+<form id="form" target="_self"><main class="row"> <!--main-->
+<div class="col-md-6">
+  <section class="frame" style="text-align: center;">
+      <h3 class="frame"><label for="reload">STREAM</label></h3>
+      <p>
+          <!-- <video id="video" style="background-color: rgb(255, 255, 255);width: 100%"></video>
+          <input type="button" onclick="document.getElementById('video').play();document.getElementById('video').currentTime +=  10000;" id="play" value="Play" class="btn btn-outline-primary btn-sm"> -->
+          <iframe id="youtube" width="100%" height="auto" style="aspect-ratio: 16/9;width: 100%; min-height: 170px;max-height: 315px;" src="https://www.youtube.com/embed/4GB4NGt1J4M?widget_referrer=arthurcam.com&autoplay=1&mute=1&fs=0&color=white&iv_load_policy=3&enablejsapi=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      </p>
+  </section>
+
+  <!--
+  <div class="frame" id="feedbackAreaText"></div>
+  <section class="frame">
+      <h3 class="frame"><label for="send_text">SEND DISPLAY TEXT, Serial device</label></h3>
+      <p>
+          <input maxlength="18" name="send_text" id="send_text" type="text" class="form-control" placeholder="type your text here for display" autocomplete="off">
+          <input id="send_text_button" type="button" value="   &#9889;   Send Text      " class="btn btn-outline-info btn-sm">  
+      </p>
+  </section>
+  <div class="frame" id="feedbackAreaLight"></div>
+  <section class="frame">
+      <h3 class="frame"><label for="led">LIGHT TURN ON, serial device</label></h3>
+      <p class="frame">
+          <input id="led" type="button" value=" &#9965; LED On/Off  " class="btn btn-outline-info btn-sm">
+          <input id="lamp" disabled type="button" value=" &#9967; Lamp On/Off  " class="btn btn-outline-info btn-sm">
+          <br>
+          *possible delay 18sec, accept only English 18 characters for Serial device, and 10 for IOT device <br>
+      </p>
+  </section>
+-->
+
+  <div class="frame" id="feedbackAreaIOTText"></div>
+  <section class="frame">
+    <h3 class="frame"><label for="send_iot_text">SEND DISPLAY TEXT, IOT device</label></h3>
+    <p>
+        <input maxlength="11" name="send_iot_text" id="send_iot_text" type="text" class="form-control" placeholder="type your text here for display" autocomplete="off">
+        <input id="send_iot_text_button" type="button" value="   &#9889;   Send Text      " class="btn btn-outline-info btn-sm">  
+    </p>
+  </section>
+  <section class="frame">
+    <h3 class="frame"><label for="send_iot_text_button">PREVIOUS DISPLAY TEXT, IOT device</label></h3>
+    <p class="frame" id="displayedIOTText"></p>
+  </section>
+
+
+  <p class="last_column_element"></p>
+</div><!--column end-->
+
+
+<div class="col-md-6">
+
+  <div class="frame" id="feedbackAreaIOTLight"></div>
+  <section class="frame">
+      <h3 class="frame"><label for="led_iot">LIGHT TURN ON, iot device</label></h3>
+      <p class="frame">
+          <input id="led_iot" type="button" value=" &#9965; LED On/Off  " class="btn btn-outline-info btn-sm">
+          <input id="lamp_iot" type="button" value=" &#9967; Lamp On/Off  " class="btn btn-outline-info btn-sm">
+          <br>
+          *possible delay 5sec <br>
+          *accept only English 10 characters for IOT device <br>
+          *phone auto play not available<br>
+      </p>
+  </section>
+
+
+
+  <!--
+  <section class="frame">
+    <h3 class="frame"><label for="send_text_button">PREVIOUS DISPLAY TEXT, serial device</label></h3>
+    <p class="frame" id="displayedText"></p>
+  </section>
+  -->
+  <section class="frame">
+    <!--
+      <h3 class="frame"><label for="reload">Stream Controls</label></h3>
+      <p>
+          <input type="button" id="reload" value=" &#9851;  Page Reload   " class="btn btn-outline-primary btn-sm">
+      </p>
+    -->
+  </section>
+  <div class="frame">
+    <div class="frame" id="feedbackAreaComment"></div>
+    <section class="frame">
+        <h3 class="frame"><label for="send_comment">COMMENTS, what to improve</label></h3>
+        <p>
+            <input maxlength="255" placeholder="type your comment about this app" name="send_comment" id="send_comment" type="text" class="form-control" autocomplete="off">
+            <input type="button" id="send_comment_button" value=" &#9888;  ADD a comment   " class="btn btn-outline-primary btn-sm">
+        </p>
+    </section>
+    <section>
+        <h3 class="frame"><label for="send_comment_button">PREVIOUS COMMENTS, what to improve</label></h3>
+        <p class="frame" id="comments"></p>
+    </section>
+  </div>
+  <p class="last_column_element"></p>
+</div><!--column end-->
+</main></form>
+</div><!--end sub_container-->
+<footer class="page-footer pre_footer" > <div class="footer footer-copyright row text-center py-3">
+<div class="col-sm-4 col-md-5" style="text-align: right">
+  <p>
+      <img class="logo_footer_image" alt="Arthur Cam .com" src="./images/ArthurCam-camera-control.jpg">
+  </p>
+</div><!--column end-->
+<div class="col-sm-8 col-sm-offset-0 col-md-5 col-md-offset-2" style="text-align: left">
+  <section class="frame">
+      <h3>About</h3>
+      <p>
+          <a href="https://github.com/w3arthur"> Visit w3arthur GITHUB</a> <br>
+              Thanks for appreciate my effort. <br>
+          <input id="documentation" type="button" value="Project Documentation" class="btn btn-outline-secondary btn-sm">
+      </p>
+  </section>
+</div>
+
+</div></footer><!--end footer-->
+</div></div>
+
+
+ <script type="module" src="./javascript/htmlEvents.js"></script>
+
+
+</body></html>

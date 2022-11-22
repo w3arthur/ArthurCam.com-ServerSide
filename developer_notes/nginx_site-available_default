@@ -1,0 +1,143 @@
+    # sudo systemctl restart nginx
+
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+        server_name _;
+        location / {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            try_files $uri $uri/ =404;
+        }
+    }
+
+    server { #redirect to https
+        listen 80;
+        server_name geo-trivia.com www.geo-trivia.com;
+        return 301 https://geo-trivia.com$request_uri;
+    }
+
+    server {
+        server_name geo-trivia.com www.geo-trivia.com; #localhost   # managed by Certbot
+        root /var/www/geotrivia/;
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+        location / {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            #try_files $uri $uri/ =404;
+            proxy_pass http://localhost:3005;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+        location /socket.io/ {
+            proxy_http_version 1.1;
+            proxy_set_header Updgrade $http_upgrade;
+            proxy_set_header Connnection "upgrade";
+            root /var/www//var/www/mywebsite/_work/my-project/my-project/server;
+            proxy_pass http://localhost:3444;
+        }
+        location /api/ {
+            root /var/www//var/www/mywebsite/_work/my-project/my-project/server;
+            proxy_pass http://localhost:3444;
+        }
+        #listen 80;
+        listen [::]:443 ssl ; # managed by Certbot
+        listen 443 ssl; # managed by Certbot
+        ssl_certificate /etc/letsencrypt/live/geo-trivia.com/fullchain.pem; # managed by Certbot
+        ssl_certificate_key /etc/letsencrypt/live/geo-trivia.com/privkey.pem; # managed by Certbot
+        include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+    }
+
+
+
+
+
+
+    server {
+        location / {
+		root /var/www/mycam;
+
+        }
+    }
+
+
+
+    server {
+        root /var/www/mycam;
+        # Add index.php to the list if you are using PHP
+        #index index.html index.htm index.nginx-debian.html;
+        server_name arthurcam.com www.arthurcam.com; # managed by Certbot
+
+        location / {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            #try_files $uri $uri/ =404;
+	    proxy_pass http://localhost:3777;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        location /tmp {
+            types {
+                application/vnd.apple.mpegurl m3u8;
+                application/octet-stream ts;
+                application/dash+xml mpd;
+            }
+            add_header Cache-Control no-cache;
+            # To avoid issues with cross-domain HTTP requests (e.g. during development)
+            add_header Access-Control-Allow-Origin *;
+        }
+
+		## please fix!
+        location /ws_arduino {
+                proxy_pass http://websocket;	# proxy_pass http://localhost:3777;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+            	proxy_set_header Connection $connection_upgrade; # "Upgrade"
+            	proxy_set_header Host $host;	
+		proxy_set_header X-Real-IP $remote_addr;	#
+        }
+
+        listen [::]:443 ssl ipv6only=on; # managed by Certbot
+        listen 443 ssl; # managed by Certbot
+        ssl_certificate /etc/letsencrypt/live/arthurcam.com/fullchain.pem; # managed by Certbot
+        ssl_certificate_key /etc/letsencrypt/live/arthurcam.com/privkey.pem; # managed by Certbot
+        include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+    }
+
+
+    server {
+        if ($host = www.arthurcam.com) { return 301 https://$host$request_uri; } # managed by Certbot
+        if ($host = arthurcam.com) { return 301 https://$host$request_uri; } # managed by Certbot
+        listen 80 ;
+        listen [::]:80 ;
+        server_name arthurcam.com www.arthurcam.com;
+        return 404; # managed by Certbot
+    }
+
+
+    map $http_upgrade $connection_upgrade{
+            default upgrade;
+            `` close;
+    }
+
+    upstream websocket{
+        server arthurcam.com; #:3777
+        #SERVER endpoint that handle ws:// connections
+    }
+
+
+
