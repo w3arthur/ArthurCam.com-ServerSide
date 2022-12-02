@@ -25,7 +25,7 @@
   </section>
 </header> <!--end header-->
 <form id="form" target="_self"><main class="row"> <!--main-->
-<div class="col-md-6">
+<div class="col-md-push-2 col-md-8 offset-md-2">
   <section class="frame" style="text-align: center;">
       <h3 class="frame"><label for="reload">STREAM</label></h3>
       <p>
@@ -36,25 +36,25 @@
   </section>
 
   <!--
-  <div class="frame" id="feedbackAreaText"></div>
-  <section class="frame">
-      <h3 class="frame"><label for="send_text">SEND DISPLAY TEXT, Serial device</label></h3>
-      <p>
-          <input maxlength="18" name="send_text" id="send_text" type="text" class="form-control" placeholder="type your text here for display" autocomplete="off">
-          <input id="send_text_button" type="button" value="   &#9889;   Send Text      " class="btn btn-outline-info btn-sm">  
-      </p>
-  </section>
-  <div class="frame" id="feedbackAreaLight"></div>
-  <section class="frame">
-      <h3 class="frame"><label for="led">LIGHT TURN ON, serial device</label></h3>
-      <p class="frame">
-          <input id="led" type="button" value=" &#9965; LED On/Off  " class="btn btn-outline-info btn-sm">
-          <input id="lamp" disabled type="button" value=" &#9967; Lamp On/Off  " class="btn btn-outline-info btn-sm">
-          <br>
-          *possible delay 18sec, accept only English 18 characters for Serial device, and 10 for IOT device <br>
-      </p>
-  </section>
--->
+    <div class="frame" id="feedbackAreaText"></div>
+    <section class="frame">
+        <h3 class="frame"><label for="send_text">SEND DISPLAY TEXT, Serial device</label></h3>
+        <p>
+            <input maxlength="18" name="send_text" id="send_text" type="text" class="form-control" placeholder="type your text here for display" autocomplete="off">
+            <input id="send_text_button" type="button" value="   &#9889;   Send Text      " class="btn btn-outline-info btn-sm">  
+        </p>
+    </section>
+    <div class="frame" id="feedbackAreaLight"></div>
+    <section class="frame">
+        <h3 class="frame"><label for="led">LIGHT TURN ON, serial device</label></h3>
+        <p class="frame">
+            <input id="led" type="button" value=" &#9965; LED On/Off  " class="btn btn-outline-info btn-sm">
+            <input id="lamp" disabled type="button" value=" &#9967; Lamp On/Off  " class="btn btn-outline-info btn-sm">
+            <br>
+            *possible delay 18sec, accept only English 18 characters for Serial device, and 10 for IOT device <br>
+        </p>
+    </section>
+  -->
 
   <div class="frame" id="feedbackAreaIOTText"></div>
   <section class="frame">
@@ -64,17 +64,12 @@
         <input id="send_iot_text_button" type="button" value="   &#9889;   Send Text      " class="btn btn-outline-info btn-sm">  
     </p>
   </section>
-  <section class="frame">
-    <h3 class="frame"><label for="send_iot_text_button">PREVIOUS DISPLAY TEXT, IOT device</label></h3>
-    <p class="frame" id="displayedIOTText"></p>
-  </section>
-
-
-  <p class="last_column_element"></p>
-</div><!--column end-->
-
-
-<div class="col-md-6">
+  <!--
+    <section class="frame">
+      <h3 class="frame"><label for="send_iot_text_button">PREVIOUS DISPLAY TEXT, IOT device</label></h3>
+      <p class="frame" id="displayedIOTText"></p>
+    </section>
+  -->
 
   <div class="frame" id="feedbackAreaIOTLight"></div>
   <section class="frame">
@@ -83,28 +78,12 @@
           <input id="led_iot" type="button" value=" &#9965; LED On/Off  " class="btn btn-outline-info btn-sm">
           <input id="lamp_iot" type="button" value=" &#9967; Lamp On/Off  " class="btn btn-outline-info btn-sm">
           <br>
-          *possible delay 5sec <br>
+          <!--*possible delay 5sec <br>-->
           *accept only English 10 characters for IOT device <br>
-          *phone auto play not available<br>
+          <!--*phone auto play not available<br>-->
       </p>
   </section>
 
-
-
-  <!--
-  <section class="frame">
-    <h3 class="frame"><label for="send_text_button">PREVIOUS DISPLAY TEXT, serial device</label></h3>
-    <p class="frame" id="displayedText"></p>
-  </section>
-  -->
-  <section class="frame">
-    <!--
-      <h3 class="frame"><label for="reload">Stream Controls</label></h3>
-      <p>
-          <input type="button" id="reload" value=" &#9851;  Page Reload   " class="btn btn-outline-primary btn-sm">
-      </p>
-    -->
-  </section>
   <div class="frame">
     <div class="frame" id="feedbackAreaComment"></div>
     <section class="frame">
@@ -114,13 +93,44 @@
             <input type="button" id="send_comment_button" value=" &#9888;  ADD a comment   " class="btn btn-outline-primary btn-sm">
         </p>
     </section>
-    <section>
-        <h3 class="frame"><label for="send_comment_button">PREVIOUS COMMENTS, what to improve</label></h3>
-        <p class="frame" id="comments"></p>
-    </section>
+    <!--
+      <section>
+          <h3 class="frame"><label for="send_comment_button">PREVIOUS COMMENTS, what to improve</label></h3>
+          <p class="frame" id="comments"></p>
+      </section>
+    -->
+
   </div>
+
+
   <p class="last_column_element"></p>
 </div><!--column end-->
+
+
+<div class="col-md-12">
+  <!--
+    <section class="frame">
+      <h3 class="frame"><label for="send_text_button">PREVIOUS DISPLAY TEXT, serial device</label></h3>
+      <p class="frame" id="displayedText"></p>
+    </section>
+  -->
+  <!--
+    <section class="frame">
+
+      <h3 class="frame"><label for="reload">Stream Controls</label></h3>
+      <p>
+          <input type="button" id="reload" value=" &#9851;  Page Reload   " class="btn btn-outline-primary btn-sm">
+      </p>
+
+    </section>
+  -->
+
+
+  <p class="last_column_element"></p>
+</div><!--column end-->
+
+
+
 </main></form>
 </div><!--end sub_container-->
 <footer class="page-footer pre_footer" > <div class="footer footer-copyright row text-center py-3">
